@@ -5,6 +5,7 @@ import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import AddNominations from './components/AddNominations';
+import RemoveNominations from './components/RemoveNominations';
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
@@ -27,6 +28,14 @@ const App = () => {
 		setNominations(newNominationList);
 	};
 
+  const removeNominatedMovie = (movie) => {
+    const newNominationList = nominations.filter(
+      (nomination) => nomination.imdbID !== movie.imdbID
+    );
+
+    setNominations(newNominationList);
+  };
+
 	useEffect(() => {
 		getMovieRequest(searchValue);
 	}, [searchValue]);
@@ -48,7 +57,11 @@ const App = () => {
 				<MovieListHeading heading='Nominations' />
 			</div>
 			<div className='row'>
-				<MovieList movies={nominations} nominationComponent={AddNominations} />
+          <MovieList
+              movies={nominations}
+              handleNominationsClick={removeNominatedMovie}
+              nominationComponent={RemoveNominations}
+          />
 			</div>
 		</div>
 	);
