@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Nominate = () => {
+const AddNomination = () => {
 	return (
 		<>
 			<span className='mr-2'>Add Nomination</span>
@@ -21,4 +21,4 @@ const Nominate = () => {
 	);
 };
 
-export default Nominate;
+export default AddNomination;
